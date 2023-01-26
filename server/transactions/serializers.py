@@ -7,3 +7,4 @@ class TransactionSerializer(serializers.ModelSerializer):
         model = Transaction
         fields = "__all__"
         read_only_fields = ["date", "value", "cpf", "card", "hour", "store"]
+        depth = 1

@@ -13,13 +13,13 @@ from datetime import datetime, date, time
 # Create your views here.
 
 
-class CreateTransactionView(generics.CreateAPIView):
+class CreateTransactionView(generics.ListCreateAPIView):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
     parser_classes = [MultiPartParser]
 
     def create(self, request, *args, **kwargs):
-        transactions_lines = self.request.FILES["cnab"].readlines()
+        transactions_lines = request.FILES["cnab"].readlines()
 
         for transaction in transactions_lines:
             transaction_decoded = transaction.decode("utf-8")
@@ -49,9 +49,9 @@ class CreateTransactionView(generics.CreateAPIView):
                 transaction_type = "-"
 
             if transaction_type == "+":
-                store[0].balance += float(dict["value"])
+                store[0].balance += dict["value"]
             else:
-                store[0].balance -= float(dict["value"])
+                store[0].balance -= dict["value"]
 
             store[0].save()
 
