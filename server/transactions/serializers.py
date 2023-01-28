@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Transaction
-import ipdb
 
 
 class TransactionSerializer(serializers.ModelSerializer):
