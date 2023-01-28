@@ -9,6 +9,10 @@
 > Migrations automática
 
 ```bash
+cd server
+```
+
+```bash
 docker compose up
 ```
 
@@ -17,10 +21,6 @@ docker compose up
 > Use o pip install para instalar todas as dependencias
 
 > Use pip install to install dependencies.
-
-```bash
-cd server
-```
 
 ```bash
 pip install -r requirements.txt
