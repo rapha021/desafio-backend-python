@@ -1,4 +1,4 @@
-import { useBoolean, useDisclosure } from "@chakra-ui/react"
+import { useBoolean, useDisclosure, useToast } from "@chakra-ui/react"
 import {
   createContext,
   ReactNode,
@@ -29,6 +29,7 @@ interface IGlobal {
   isLoading: boolean
   setFile: React.Dispatch<React.SetStateAction<File | undefined>>
   stores: IStore[]
+  toast: any
 }
 
 interface IGlobalProviderProps {
@@ -77,6 +78,7 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
   const [file, setFile] = useState<File>()
 
   const navigate = useNavigate()
+  const toast = useToast()
 
   useEffect(() => {
     const token = window.localStorage.getItem("token")
@@ -94,34 +96,38 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
         navigate("/dashboard")
       })
       .catch((err) => {
-        window.localStorage.clear()
+        window.localStorage.removeItem("username")
+        window.localStorage.removeItem("email")
+        window.localStorage.removeItem("token")
         setAuthenticated.off()
         navigate("/login")
       })
   }, [authenticated])
 
   useEffect(() => {
-    api
-      .get(`/api/transactions/?page=${page}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setTransactions(res.data.results)
-        setMaxPage(res.data.count)
-      })
+    if (authenticated) {
+      api
+        .get(`/api/transactions/?page=${page}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setTransactions(res.data.results)
+          setMaxPage(res.data.count)
+        })
 
-    api
-      .get("/api/store/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setStores(res.data.results)
-      })
-  }, [page, token, isLoading])
+      api
+        .get("/api/store/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setStores(res.data.results)
+        })
+    }
+  }, [page, token, isLoading, authenticated])
 
   const handle_next_page = () => {
     if (page < maxPage / 5) {
@@ -152,6 +158,15 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
       .then((res) => {
         setIsLoading(false)
         onClose()
+        toast({
+          title: "Upload realizado!",
+          description: "Em alguns instantes a tabela será atualizada.",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+          variant: "left-accent",
+          position: "bottom-left",
+        })
       })
       .catch((err) => {
         setIsLoading(false)
@@ -176,6 +191,7 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
         isLoading,
         setFile,
         stores,
+        toast,
       }}
     >
       {children}
