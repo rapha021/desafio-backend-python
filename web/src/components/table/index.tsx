@@ -17,6 +17,7 @@ import { useGlobal } from "../../context/GlobalContext"
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
 import { ModalCUI } from "../modal"
+import { ProfileMenu } from "../menu"
 
 export const TableCUI = () => {
   const {
@@ -77,9 +78,12 @@ export const TableCUI = () => {
         </Table>
       </TableContainer>
       <Flex w="80%" alignItems="center" justifyContent="space-between">
-        <Button colorScheme="whatsapp" onClick={onOpen}>
-          Enviar Arquivo
-        </Button>
+        <Center gap="15px">
+          <Button colorScheme="whatsapp" onClick={onOpen}>
+            Enviar Arquivo
+          </Button>
+          <ProfileMenu />
+        </Center>
 
         <Center gap="15px">
           <IconButton

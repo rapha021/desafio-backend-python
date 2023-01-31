@@ -1,9 +1,12 @@
-import { Flex, Heading } from "@chakra-ui/react"
+import { Flex, Heading, SlideFade } from "@chakra-ui/react"
+import { Profile } from "../../components/profile"
 import { Status } from "../../components/status"
 
 import { TableCUI } from "../../components/table"
+import { useGlobal } from "../../context/GlobalContext"
 
 const Dashboard = () => {
+  const { tab } = useGlobal()
   return (
     <Flex
       color="black"
@@ -23,8 +26,16 @@ const Dashboard = () => {
       </Flex>
 
       <Flex flexDir="column" gap="30px" mt="35px" w="80%" alignItems="center">
-        <Heading size="md">Suas Lojas:</Heading>
-        <Status />
+        <Heading size="md">
+          {tab === "store" ? "Suas Lojas:" : "Seu Perfil"}
+        </Heading>
+        <SlideFade in={tab === "store"}>
+          {tab === "store" && <Status />}
+        </SlideFade>
+
+        <SlideFade in={tab === "profile"}>
+          {tab === "profile" && <Profile />}
+        </SlideFade>
       </Flex>
     </Flex>
   )

@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Store(models.Model):
-    name = models.CharField(max_length=19, unique=True)
+    name = models.CharField(max_length=19)
 
     balance = models.FloatField(default=0, blank=True)
 

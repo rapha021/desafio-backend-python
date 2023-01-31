@@ -30,6 +30,8 @@ interface IGlobal {
   setFile: React.Dispatch<React.SetStateAction<File | undefined>>
   stores: IStore[]
   toast: any
+  tab: string
+  setTab: React.Dispatch<React.SetStateAction<string>>
 }
 
 interface IGlobalProviderProps {
@@ -76,6 +78,8 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [file, setFile] = useState<File>()
+
+  const [tab, setTab] = useState<string>("store")
 
   const navigate = useNavigate()
   const toast = useToast()
@@ -192,6 +196,8 @@ const GlobalProvider = ({ children }: IGlobalProviderProps) => {
         setFile,
         stores,
         toast,
+        tab,
+        setTab,
       }}
     >
       {children}

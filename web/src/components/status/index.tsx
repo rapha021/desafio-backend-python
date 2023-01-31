@@ -15,7 +15,7 @@ export const Status = () => {
     <>
       <StatGroup justifyContent="center" gap="10px">
         {stores.map((store) => (
-          <Stat w="180px" key={store.id}>
+          <Stat w="170px" key={store.id}>
             <StatLabel>{store.name}</StatLabel>
             <StatNumber fontSize="14px" fontWeight="semibold"></StatNumber>
             <StatHelpText>
