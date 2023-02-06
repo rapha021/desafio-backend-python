@@ -149,7 +149,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 
 CORS_ALLOWED_ORIGINS = [
-    "https://cnab.vercel.app/",
+    "https://cnab.vercel.app",
     "https://cnab-rei-delas-bullet.onrender.com",
 ]
 
