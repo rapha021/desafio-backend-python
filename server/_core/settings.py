@@ -30,7 +30,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "https://cnab-rei-delas-bullet.onrender.com",
+    "https://cnab.vercel.app/",
+]
 
 
 # Application definition
@@ -149,7 +152,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 
 CORS_ALLOWED_ORIGINS = [
-    "*",
+    "https://cnab.vercel.app/",
+    "https://cnab-rei-delas-bullet.onrender.com",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
