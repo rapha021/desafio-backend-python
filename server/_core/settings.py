@@ -30,10 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "https://cnab-rei-delas-bullet.onrender.com",
-    "https://cnab.vercel.app/",
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
