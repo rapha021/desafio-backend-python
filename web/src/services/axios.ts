@@ -1,6 +1,6 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: "https://cnab-rei-delas-bullet.onrender.com",
+  baseURL: "https://back-end-cnab.onrender.com",
   timeout: 10000,
 })
