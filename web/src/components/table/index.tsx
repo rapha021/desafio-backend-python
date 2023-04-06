@@ -11,13 +11,13 @@ import {
   Center,
   Flex,
   IconButton,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 
-import { useGlobal } from "../../context/GlobalContext"
+import { useGlobal } from "../../context/GlobalContext";
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
-import { ModalCUI } from "../modal"
-import { ProfileMenu } from "../menu"
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ModalCUI } from "../modal";
+import { ProfileMenu } from "../menu";
 
 export const TableCUI = () => {
   const {
@@ -28,7 +28,7 @@ export const TableCUI = () => {
     handle_previous_page,
 
     onOpen,
-  } = useGlobal()
+  } = useGlobal();
 
   return (
     <>
@@ -62,7 +62,7 @@ export const TableCUI = () => {
                     <Td>{t.card}</Td>
                     <Td>{t.store.name}</Td>
                   </Tr>
-                )
+                );
               })
             ) : (
               <Tr>
@@ -83,6 +83,14 @@ export const TableCUI = () => {
             Enviar Arquivo
           </Button>
           <ProfileMenu />
+          <Button
+            colorScheme="gray"
+            as="a"
+            href="../../assets/cnab.txt"
+            download
+          >
+            Baixar CNAB exemplo
+          </Button>
         </Center>
 
         <Center gap="15px">
@@ -101,5 +109,5 @@ export const TableCUI = () => {
       </Flex>
       <ModalCUI />
     </>
-  )
-}
+  );
+};
